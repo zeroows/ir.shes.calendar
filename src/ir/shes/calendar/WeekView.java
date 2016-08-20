@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Blaz Solar on 24/02/14.
+ * Created by Blaz Solar on 24/02/14 Edited by Irshst 2016.
  */
 public class WeekView extends ViewGroup {
 

@@ -11,7 +11,7 @@ import android.text.*;
 
 
 /**
- * Created by Blaz Solar on 24/05/14.
+ * Created by Irshst 1395 .
  */
 public class DayView extends LinearLayout {//} TextView {
 

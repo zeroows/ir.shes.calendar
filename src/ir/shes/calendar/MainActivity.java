@@ -5,8 +5,6 @@ import ir.shes.calendar.util.*;
 import java.util.*;
 import android.widget.*;
 import java.text.*;
-import org.joda.time.*;
-import org.joda.time.chrono.*;
 
 public class MainActivity extends Activity implements PersianDatePicker.OnDateChangedListener
 {

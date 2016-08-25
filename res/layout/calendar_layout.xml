@@ -172,8 +172,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/b_header">
-
+        android:background="@drawable/b_header"
+		android:paddingBottom="5dp">
         <!-- Cashes them at first start -->
         <include layout="@layout/week_layout" />
         <include layout="@layout/week_layout" />

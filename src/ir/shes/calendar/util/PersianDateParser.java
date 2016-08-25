@@ -17,6 +17,7 @@
    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package ir.shes.calendar.util;
+import android.content.*;
 
 /**
  * Parses text from the beginning of the given string to produce a
@@ -98,7 +99,7 @@ public class PersianDateParser {
 	 * @return PersianCalendar object
 	 * @exception RuntimeException
 	 */
-	public PersianCalendar getPersianDate() {
+	public PersianCalendar getPersianDate(Context context) {
 
 		checkDateStringInitialValidation();
 
@@ -109,7 +110,7 @@ public class PersianDateParser {
 
 		checkPersianDateValidation(year, month, day);
 
-		PersianCalendar pCal = new PersianCalendar();
+		PersianCalendar pCal = new PersianCalendar(context);
 		pCal.setPersianDate(year, month, day);
 
 		return pCal;

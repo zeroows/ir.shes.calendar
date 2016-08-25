@@ -54,7 +54,7 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
 	private DayView lastDaySelected=null;
 	int selectedYear,selectedMonth,selectedDay;
 	int currentYear,currentMonth,currentDay;
-	public ResourceUtils eventCalendar;
+	
 	@Override
 	
     protected void onFinishInflate() {
@@ -185,82 +185,7 @@ return true;
 		d.setEnabled(false);
 		d.setOnClickListener(null);
 	}
-	public boolean getHVacation(int day)
-	{
-		int dayMonth=getHDayMonth(day);
-		if (eventCalendar.vacationH.containsKey(dayMonth)) 
-			return eventCalendar.vacationH.get(dayMonth);
-		return false;
-
-	}
-	public boolean getPVacation(int day)
-	{
-		int dayMonth=getPDayMonth(day);
-		if (eventCalendar.vacationP.containsKey(dayMonth)) 
-			return eventCalendar.vacationP.get(dayMonth);
-		return false;
-
-	}
-	public boolean getGVacation(int day)
-	{
-		int dayMonth=getGDayMonth(day);
-		if (eventCalendar.vacationG.containsKey(dayMonth)) 
-			return eventCalendar.vacationG.get(dayMonth);
-		return false;
-
-	}
-	public boolean isVacation(int day)
-	{
-		
-		return (getPVacation(day) || getHVacation(day) || getGVacation(day)) ; 
-
-	}
-	public String getHEvent(int day)
-	{
-		int dayMonth=getHDayMonth(day);
-		if (eventCalendar.eventH.containsKey(dayMonth)) 
-			return eventCalendar.eventH.get(dayMonth);
-		return "";
-
-	}
-	public String getPEvent(int day)
-	{
-		int dayMonth=getPDayMonth(day);
-		if (eventCalendar.eventP.containsKey(dayMonth)) 
-			return eventCalendar.eventP.get(dayMonth);
-		return "";
-
-	}
-	public String getGEvent(int day)
-	{
-		int dayMonth=getGDayMonth(day);
-		if (eventCalendar.eventG.containsKey(dayMonth)) 
-			return eventCalendar.eventG.get(dayMonth);
-		return "";
-
-	}
-	public boolean hasEvent(int day)
-	{
-
-		return !(getPEvent(day)+getHEvent(day)+getGEvent(day)).equals("") ; 
-
-	}
-	public int getHDayMonth(int i)
-	{
-		
-		return (pCalendar.persianHMonths[i]+1)*100+pCalendar.persianHDays[i];
-			
-	}
-	public int getPDayMonth(int i)
-	{
-		return pCalendar.getPersianMonth()*100+i;
-		
-	}
-	public int getGDayMonth(int i)
-	{
-		return (pCalendar.persianGMonths[i]+1)*100+pCalendar.persianGDays[i];
-		
-	}
+	
 	private void populateMonthLayout() {
 
 	  int wDay=pCalendar.persianMonthFirstDayWeekDay;
@@ -294,9 +219,9 @@ return true;
 		
 		
 		
-		dayView.setTextUp(gDay,!getGEvent(day).equals(""),getGVacation(day));
-		dayView.setText(PersianCalendarConstants.toArabicNumbers(day),!getPEvent(day).equals(""),getPVacation(day) || wDay==6);
-		dayView.setTextDown(hDay,!getHEvent(day).equals(""),getHVacation(day));
+		dayView.setTextUp(gDay,!pCalendar. getGEvent(day).equals(""),pCalendar.getGVacation(day));
+		dayView.setText(PersianCalendarConstants.toArabicNumbers(day),!pCalendar.getPEvent(day).equals(""),pCalendar.getPVacation(day) || wDay==6);
+		dayView.setTextDown(hDay,!pCalendar.getHEvent(day).equals(""),pCalendar.getHVacation(day));
 		
 		if (currentYear == pCalendar.getPersianYear() &&
 			pCalendar.getPersianMonth()==  currentMonth &&
@@ -375,10 +300,10 @@ else {
 		super(context, attrs, defStyle);
 		
 	//	LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-	    eventCalendar=new ResourceUtils(context);
+	    
 		mInflater = LayoutInflater.from(context);
 		View view = mInflater.inflate(R.layout.calendar_layout, this);
-		pCalendar = new PersianCalendar();
+		pCalendar = new PersianCalendar(context);
 		currentDay=pCalendar.getPersianDay();
 		currentMonth=pCalendar.getPersianMonth();
 		currentYear=pCalendar.getPersianYear();

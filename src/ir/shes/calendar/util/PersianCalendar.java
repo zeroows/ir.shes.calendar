@@ -26,6 +26,7 @@ import java.util.TimeZone;
 import java.util.*;
 import android.util.*;
 import java.text.*;
+import android.content.*;
 
 //import com.github.msarhan.ummalqura.calendar.*;
 /**
@@ -135,6 +136,7 @@ public class PersianCalendar extends GregorianCalendar {
 	public int[] persianGMonths=new int[32];
 	public int[] persianHYears=new int[32];
 	public int[] persianGYears=new int[32];
+	public ResourceUtils eventCalendar;
 	public HashMap<Integer,Integer> hijriMonthDayCorrection;
 	//DateTime dtISO,dtIslamic;
 	// use to seperate PersianDate's field and also Parse the DateString based
@@ -155,9 +157,9 @@ public class PersianCalendar extends GregorianCalendar {
 	 * the library; however you can change the TimeZone as you do in
 	 * GregorianCalendar by calling setTimeZone()
 	 */
-	public PersianCalendar(long millis) {
+	public PersianCalendar(Context _context,long millis) {
 		setTimeInMillis(millis);
-		calculateMonthLastDay();
+		initCalendar(_context);
 		
 	}
 
@@ -170,7 +172,14 @@ public class PersianCalendar extends GregorianCalendar {
 	 * the library; however you can change the TimeZone as you do in
 	 * GregorianCalendar by calling setTimeZone()
 	 */
-	public PersianCalendar() {
+	 
+	public PersianCalendar(Context _context) {
+		initCalendar(_context);
+		
+	}
+    private void initCalendar(Context _context)
+	{
+		eventCalendar=new ResourceUtils(_context);
 		hijriMonthDayCorrection= new HashMap<Integer,Integer>();
 		for (int i=1;i<13;i++) hijriMonthDayCorrection.put(i,0);
 		hijriMonthDayCorrection.put(2,1);
@@ -178,7 +187,95 @@ public class PersianCalendar extends GregorianCalendar {
 		setTimeZone(TimeZone.getTimeZone("Asia/Tehran"));
 		calculateMonthLastDay();
 	}
+	public boolean getHVacation(int day)
+	{
+		int dayMonth=getHDayMonth(day);
+		if (eventCalendar.vacationH.containsKey(dayMonth)) 
+			return eventCalendar.vacationH.get(dayMonth);
+		return false;
 
+	}
+	public boolean getPVacation(int day)
+	{
+		int dayMonth=getPDayMonth(day);
+		if (eventCalendar.vacationP.containsKey(dayMonth)) 
+			return eventCalendar.vacationP.get(dayMonth);
+		return false;
+
+	}
+	public boolean getGVacation(int day)
+	{
+		int dayMonth=getGDayMonth(day);
+		if (eventCalendar.vacationG.containsKey(dayMonth)) 
+			return eventCalendar.vacationG.get(dayMonth);
+		return false;
+
+	}
+	public boolean isVacation(int day)
+	{
+
+		return (getPVacation(day) || getHVacation(day) || getGVacation(day)) ; 
+
+	}
+	public String getHEvent(int day)
+	{
+		int dayMonth=getHDayMonth(day);
+		if (eventCalendar.eventH.containsKey(dayMonth)) 
+			return eventCalendar.eventH.get(dayMonth);
+		return "";
+
+	}
+	public String getPEvent(int day)
+	{
+		int dayMonth=getPDayMonth(day);
+		if (eventCalendar.eventP.containsKey(dayMonth)) 
+			return eventCalendar.eventP.get(dayMonth);
+		return "";
+
+	}
+	public String getGEvent(int day)
+	{
+		int dayMonth=getGDayMonth(day);
+		if (eventCalendar.eventG.containsKey(dayMonth)) 
+			return eventCalendar.eventG.get(dayMonth);
+		return "";
+
+	}
+	public String getTodayEvent()
+	{
+		String ret="";
+		int day=getPersianDay();
+		String pEvent=getPEvent(day);
+		String hEvent=getHEvent(day);
+		String gEvent=getGEvent(day);
+		if (!pEvent.equals("")) ret+=" "+pEvent;
+		if (!hEvent.equals("")) ret+=" "+hEvent;
+		if (!gEvent.equals("")) ret+=" "+gEvent;
+		
+		return ret.trim();
+	}
+	public boolean hasEvent(int day)
+	{
+
+		return !(getPEvent(day)+getHEvent(day)+getGEvent(day)).equals("") ; 
+
+	}
+	public int getHDayMonth(int i)
+	{
+
+		return (persianHMonths[i]+1)*100+persianHDays[i];
+
+	}
+	public int getPDayMonth(int i)
+	{
+		return getPersianMonth()*100+i;
+
+	}
+	public int getGDayMonth(int i)
+	{
+		return (persianGMonths[i]+1)*100+persianGDays[i];
+
+	}
 	/**
 	 * Calculate persian date from current Date and populates the corresponding
 	 * fields(persianYear, persianMonth, persianDay)
@@ -631,8 +728,8 @@ if (month>1)
 	 * @see PersianDateParser
 	 * @param dateString
 	 */
-	public void parse(String dateString) {
-		PersianCalendar p = new PersianDateParser(dateString, delimiter).getPersianDate();
+	public void parse(Context context,String dateString) {
+		PersianCalendar p = new PersianDateParser(dateString, delimiter).getPersianDate(context);
 		setPersianDate(p.getPersianYear(), p.getPersianMonth(), p.getPersianDay());
 	}
 

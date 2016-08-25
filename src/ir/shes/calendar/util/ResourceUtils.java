@@ -1,22 +1,12 @@
 package ir.shes.calendar.util;
+
 import java.util.*;
 import android.content.res.*;
 import android.content.*;
 import org.xmlpull.v1.*;
 import android.util.*;
 import ir.shes.calendar.*;
-/*
-Map resource in `res/xml`:
 
-<?xml version="1.0" encoding="utf-8"?>
-<map linked="true">
-<entry key="key1">value1</entry>
-<entry key="key2">value2</entry>
-<entry key="key3">value3</entry>
-</map>
-
-Resource parser:
-*/
 public final class ResourceUtils {
 	public final static String XCalendarH="ObservedHijriCalendar";
 	public final static String XCalendarG="GregorianCalendar";
@@ -38,7 +28,7 @@ public final class ResourceUtils {
 		getHashMapResource(c,R.xml.events_misc);
 	}
 	public final static void getHashMapResource(Context c, int hashMapResId) {
-	//	Map<String,String> map = null;
+	;
 		XmlResourceParser parser = c.getResources().getXml(hashMapResId);
 
 		String key = null, value = null;
@@ -53,7 +43,7 @@ public final class ResourceUtils {
 				} else if (eventType == XmlPullParser.START_TAG) {
 					if (parser.getName().equals("XCalendarEvents")) {
 				
-					//	map =  new HashMap<String, String>();
+				
 					} else if (parser.getName().equals("Event")) {
 						title = parser.getAttributeValue(null, "Title");
 						day = parser.getAttributeValue(null, "Day");
@@ -94,7 +84,7 @@ public final class ResourceUtils {
 				} else if (eventType == XmlPullParser.END_TAG) {
 					if (parser.getName().equals("Event")) {
 						
-					//	map.put(key, value);
+					
 						key = null;
 						value = null;
 					}
@@ -110,7 +100,7 @@ public final class ResourceUtils {
 			return ;
 		}
 
-		//return map;
+		
 	}
 	
 }

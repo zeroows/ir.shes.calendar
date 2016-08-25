@@ -5,10 +5,6 @@
 	android:layout_height="match_parent"
 	android:orientation="vertical" >
 
-<!--
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
--->
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -176,7 +172,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/bg_calendar_stroke">
+        android:background="@drawable/b_header">
 
         <!-- Cashes them at first start -->
         <include layout="@layout/week_layout" />
@@ -188,5 +184,5 @@
 
     </LinearLayout>
 
-<!--/merge-->
+
 </LinearLayout>

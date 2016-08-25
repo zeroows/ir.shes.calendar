@@ -104,31 +104,36 @@ containing a value of this type.
         public static final int text_super_light=0x7f050002;
     }
     public static final class drawable {
-        public static final int b_black=0x7f020000;
-        public static final int b_current=0x7f020001;
-        public static final int b_current_selected=0x7f020002;
-        public static final int b_header=0x7f020003;
-        public static final int b_selected=0x7f020004;
-        public static final int bg_btn_calendar=0x7f020005;
-        public static final int bg_btn_calendar_activated=0x7f020006;
-        public static final int bg_btn_calendar_pressed=0x7f020007;
-        public static final int bg_calendar_stroke=0x7f020008;
-        public static final int calendar=0x7f020009;
-        public static final int ic_arrow_left=0x7f02000a;
-        public static final int ic_arrow_left_disabled=0x7f02000b;
-        public static final int ic_arrow_left_normal=0x7f02000c;
-        public static final int ic_arrow_left_pressed=0x7f02000d;
-        public static final int ic_arrow_right=0x7f02000e;
-        public static final int ic_arrow_right_disabled=0x7f02000f;
-        public static final int ic_arrow_right_normal=0x7f020010;
-        public static final int ic_arrow_right_pressed=0x7f020011;
+        public static final int appwidget_dark_bg=0x7f020000;
+        public static final int appwidget_dark_bg_focused=0x7f020001;
+        public static final int appwidget_dark_bg_pressed=0x7f020002;
+        public static final int b_black=0x7f020003;
+        public static final int b_current=0x7f020004;
+        public static final int b_current_selected=0x7f020005;
+        public static final int b_header=0x7f020006;
+        public static final int b_selected=0x7f020007;
+        public static final int bg_btn_calendar=0x7f020008;
+        public static final int bg_btn_calendar_activated=0x7f020009;
+        public static final int bg_btn_calendar_pressed=0x7f02000a;
+        public static final int bg_calendar_stroke=0x7f02000b;
+        public static final int calendar=0x7f02000c;
+        public static final int ic_arrow_left=0x7f02000d;
+        public static final int ic_arrow_left_disabled=0x7f02000e;
+        public static final int ic_arrow_left_normal=0x7f02000f;
+        public static final int ic_arrow_left_pressed=0x7f020010;
+        public static final int ic_arrow_right=0x7f020011;
+        public static final int ic_arrow_right_disabled=0x7f020012;
+        public static final int ic_arrow_right_normal=0x7f020013;
+        public static final int ic_arrow_right_pressed=0x7f020014;
     }
     public static final class id {
         public static final int PersianDatePicker=0x7f08000c;
+        public static final int contentContainer=0x7f080010;
         public static final int dayText=0x7f080009;
         public static final int dayTextDown=0x7f08000b;
         public static final int dayTextUp=0x7f08000a;
         public static final int days=0x7f080007;
+        public static final int desc=0x7f080011;
         public static final int header=0x7f080000;
         public static final int hejri=0x7f08000e;
         public static final int miladi=0x7f08000f;
@@ -146,6 +151,7 @@ containing a value of this type.
         public static final int day_layout=0x7f030001;
         public static final int main=0x7f030002;
         public static final int week_layout=0x7f030003;
+        public static final int widget_layout=0x7f030004;
     }
     public static final class string {
         public static final int app_name=0x7f060000;
@@ -153,14 +159,30 @@ containing a value of this type.
         public static final int time_prev=0x7f060002;
     }
     public static final class style {
+        /** 
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    
+
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        
+         */
+        public static final int AppBaseTheme=0x7f070002;
+        /**  Application theme. 
+ All customizations that are NOT specific to a particular API-level can go here. 
+         */
+        public static final int AppTheme=0x7f070003;
         public static final int CalendarStyle=0x7f070001;
         public static final int CalendarTheme=0x7f070000;
     }
     public static final class xml {
-        public static final int events_gregorian=0x7f040000;
-        public static final int events_hijri=0x7f040001;
-        public static final int events_misc=0x7f040002;
-        public static final int events_persian=0x7f040003;
+        public static final int demo_widget_provider=0x7f040000;
+        public static final int events_gregorian=0x7f040001;
+        public static final int events_hijri=0x7f040002;
+        public static final int events_misc=0x7f040003;
+        public static final int events_persian=0x7f040004;
     }
     public static final class styleable {
         /** Attributes that can be used with a PersianDatePicker.

@@ -5,11 +5,13 @@ import ir.shes.calendar.util.*;
 import java.util.*;
 import android.widget.*;
 import java.text.*;
+import android.content.*;
 
 public class MainActivity extends Activity implements PersianDatePicker.OnDateChangedListener
 {
 	PersianDatePicker persianDatePicker;
 	TextView mText1,mText2,mText3;
+	BroadcastReceiver tickReceiver;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -25,23 +27,20 @@ public class MainActivity extends Activity implements PersianDatePicker.OnDateCh
 	
 		PersianCalendar pCalendar = persianDatePicker.getPersianCalendar();
 		showCalendar(pCalendar);
-		//persianCalendar.setPersianDate(1393, 6, 28);
-	//	persianDatePicker.setDisplayPersianDate(persianCalendar);
-		//Date d = persianDatePicker.getDisplayDate();
-
-		//PersianCalendar pCal = persianDatePicker.getDisplayPersianDate();
 		
 	}
+
+	
 private void showCalendar(PersianCalendar pCalendar)
 {
 	int day=pCalendar.getPersianDay();
-	mText1.setText(pCalendar.getPersianLongDate()+" "+persianDatePicker.getPEvent(day));
-	mText2.setText(pCalendar.writeIslamicDate()+" "+persianDatePicker.getHEvent(day)); 
+	mText1.setText(pCalendar.getPersianLongDate()+" "+pCalendar.getPEvent(day));
+	mText2.setText(pCalendar.writeIslamicDate()+" "+pCalendar.getHEvent(day)); 
  
 	
 	SimpleDateFormat df = new SimpleDateFormat("EEEE yyyy-MMMM(MM)-dd");
 	String formattedDate = df.format(pCalendar.getTime());
-	mText3.setText(formattedDate+" "+persianDatePicker.getGEvent(day));
+	mText3.setText(formattedDate+" "+pCalendar.getGEvent(day));
 	
 }
 	@Override

@@ -27,6 +27,7 @@ public final class ResourceUtils {
 		getHashMapResource(c,R.xml.events_persian);
 		getHashMapResource(c,R.xml.events_misc);
 	}
+	
 	public final static void getHashMapResource(Context c, int hashMapResId) {
 	;
 		XmlResourceParser parser = c.getResources().getXml(hashMapResId);
@@ -66,14 +67,18 @@ public final class ResourceUtils {
 							
 							
 					        if (xCalendar.equals( XCalendarP)){
+								if (eventP.containsKey(dayMonth)) eventP.put(dayMonth,eventP.get(dayMonth)+" "+title);
+								else
 									eventP.put(dayMonth,title);
 									if (vacation) vacationP.put(dayMonth,true);
 							} else  if (xCalendar.equals( XCalendarH)){
-								
+								if (eventH.containsKey(dayMonth)) eventH.put(dayMonth,eventH.get(dayMonth)+" "+title);
+								else
 									eventH.put(dayMonth,title);
 									if (vacation) vacationH.put(dayMonth,true);
 							} else  if (xCalendar.equals( XCalendarG)){
-								
+								if (eventG.containsKey(dayMonth)) eventG.put(dayMonth,eventG.get(dayMonth)+" "+title);
+								else
 								
 									eventG.put(dayMonth,title);
 									if (vacation) vacationG.put(dayMonth,true);

@@ -40,6 +40,7 @@ public class DayView extends LinearLayout {//} TextView {
         txtUp = (TextView) findViewById(R.id.dayTextUp);
 		txtMid = (TextView) findViewById(R.id.dayText);
 		txtDown = (TextView) findViewById(R.id.dayTextDown);
+		
 	}
     public void setCurrent(boolean current) {
 		mCurrent=current;
@@ -114,16 +115,16 @@ public class DayView extends LinearLayout {//} TextView {
     public boolean isCurrent() {
         return mCurrent;
     }
-
+/*
     @Override
     protected int[] onCreateDrawableState(int extraSpace) {
         final int[] state = super.onCreateDrawableState(extraSpace + 1);
-       /*
+       
         if (mCurrent) {
             mergeDrawableStates(state, STATE_CURRENT);
         }
-		*/
+		
 
         return state;
-    }
+    }*/
 }

@@ -49,7 +49,7 @@ public class WeekView extends ViewGroup {
             if (child.getVisibility() == GONE) {
                 continue;
             }
-
+			
             child.measure(
                     MeasureSpec.makeMeasureSpec(baseSize, MeasureSpec.EXACTLY),
                     MeasureSpec.makeMeasureSpec(baseSize, MeasureSpec.EXACTLY)
@@ -57,7 +57,7 @@ public class WeekView extends ViewGroup {
 
         }
 
-        setMeasuredDimension(widthSize, getLayoutParams().height >= 0 ? getLayoutParams().height : baseSize + getPaddingBottom() + getPaddingTop());
+        setMeasuredDimension(widthSize,( getLayoutParams().height >= 0 ? getLayoutParams().height : baseSize+ getPaddingBottom() + getPaddingTop()));
 
     }
 

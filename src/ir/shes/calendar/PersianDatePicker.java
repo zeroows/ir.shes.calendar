@@ -44,7 +44,7 @@ public class PersianDatePicker extends LinearLayout implements View.OnClickListe
     private LinearLayout mWeeksView;
 
     private final LayoutInflater mInflater;
-    private final RecycleBin mRecycleBin = new RecycleBin();
+    //private final RecycleBin mRecycleBin = new RecycleBin();
 
     //private ResizeManager mResizeManager;
 
@@ -132,13 +132,14 @@ return true;
 
 	for (int i = 0; i < 7; i++) {
 			TextView textView = (TextView) layout.getChildAt(rtl7(i));
-			textView.setText(PersianCalendarConstants.persianWeekDays[i]);
+			textView.setText(PersianCalendarConstants.getShamsiWeekDay(i));
 
 	
 		}
 		
 
     }
+	/*
 	private void cacheView(int index) {
         View view = mWeeksView.getChildAt(index);
         if(view != null) {
@@ -146,10 +147,7 @@ return true;
             mRecycleBin.addView(view);
         }
     }
-	public PersianCalendar getPersianCalendar() {
-        
-        return pCalendar;
-    }
+	
 	private View getView() {
         View view = mRecycleBin.recycleView();
         if (view == null) {
@@ -158,9 +156,13 @@ return true;
             view.setVisibility(View.VISIBLE);
         }
         return view;
+    }*/
+	public PersianCalendar getPersianCalendar() {
+
+        return pCalendar;
     }
 	private WeekView getWeekView(int index) {
-	
+	/*
         int cnt = mWeeksView.getChildCount();
 
         if(cnt < index + 1) {
@@ -169,7 +171,7 @@ return true;
                 mWeeksView.addView(view);
             }
         }
-
+*/
         return (WeekView) mWeeksView.getChildAt(index);
     }
 	private final DayView getDayView(int week,int day)
@@ -181,11 +183,17 @@ return true;
 	private void resetDayView(int week,int day)
 	{
 		DayView d=getDayView(week,day);
+		d.setSelected(false);
 		d.clearText();
 		d.setEnabled(false);
 		d.setOnClickListener(null);
 	}
-	
+	private void resetWeekView(int week)
+	{
+		for (int i=0;i<7;i++)
+
+			resetDayView(week,i);
+	}
 	private void populateMonthLayout() {
 
 	  int wDay=pCalendar.persianMonthFirstDayWeekDay;
@@ -275,11 +283,11 @@ else {
 	
 		for (int i=wDay+1;i<7;i++)
 			resetDayView(wCnt,i);
-			
-        int childCnt = mWeeksView.getChildCount();
+		
+        int childCnt = mWeeksView.getChildCount()-1;
         if (cnt < childCnt) {
             for (int i = cnt; i < childCnt; i++) {
-                cacheView(i);
+                resetWeekView(i);
             }
         }
 
@@ -558,7 +566,7 @@ else {
 			}
 		};
 	}
-	*/
+	
 	private class RecycleBin {
 
         private final Queue<View> mViews = new LinkedList<>();
@@ -572,5 +580,5 @@ else {
             mViews.add(view);
         }
 
-    }
+    }*/
 }

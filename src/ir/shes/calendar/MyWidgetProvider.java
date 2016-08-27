@@ -45,7 +45,7 @@ public class MyWidgetProvider extends AppWidgetProvider {
 	}
 
 	private String getTitle() {
-		return pCalendar.getPersianLongDateAndTime();
+		return pCalendar.getPersianLongDate();
 	}
 
 	public static void pushWidgetUpdate(Context context, RemoteViews remoteViews) {

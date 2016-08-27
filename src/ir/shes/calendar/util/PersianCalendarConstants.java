@@ -67,6 +67,11 @@ public class PersianCalendarConstants {
 		"\u0634\u0639\u0628\u0627\u0646", "\u0631\u0645\u0636\u0627\u0646", "\u0634\u0648\u0627\u0644", "\u0630\u0648\u0627\u0644\u0642\u0639\u062F\u0647", "\u0630\u0648\u0627\u0644\u062D\u062C\u0647" };
     public static final String[] arabicChars ={"\u0660","\u0661","\u0662","\u0663","\u0664","\u0665","\u0666","\u0667","\u0668","\u0669"};
 	
+	public static final String getShamsiWeekDay(int week)
+	{
+		if (week>0 && week<6) return toArabicNumbers(week)+persianWeekDays[0];
+		return persianWeekDays[week];
+   	}
 	public static final String toArabicNumbers(int number)
 	{
 	StringBuilder builder = new StringBuilder();

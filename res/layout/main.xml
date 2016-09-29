@@ -8,6 +8,8 @@
 
 	<ir.shes.calendar.PersianDatePicker
 		android:id="@+id/PersianDatePicker"
+		persianDatePicker:externalPersianCalendar="true"
+		persianDatePicker:disableAddKey="true"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"/>
 

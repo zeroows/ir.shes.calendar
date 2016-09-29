@@ -20,7 +20,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int disableSoftKeyboard=0x7f01000a;
+        public static final int disableAddKey=0x7f010003;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -28,55 +28,7 @@ theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
          */
-        public static final int displayDescription=0x7f010009;
-        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int displayMonthNames=0x7f010007;
-        /** <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int maxYear=0x7f010003;
-        /** <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int minYear=0x7f010002;
-        /** <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int selectedDay=0x7f010006;
-        /** <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int selectedMonth=0x7f010005;
-        /** <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int selectedYear=0x7f010004;
+        public static final int externalPersianCalendar=0x7f010002;
         /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -85,14 +37,6 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int state_current=0x7f010000;
-        /** <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int yearRange=0x7f010008;
     }
     public static final class color {
         public static final int blue_dark=0x7f050004;
@@ -192,33 +136,17 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #PersianDatePicker_disableSoftKeyboard ir.shes.calendar:disableSoftKeyboard}</code></td><td></td></tr>
-           <tr><td><code>{@link #PersianDatePicker_displayDescription ir.shes.calendar:displayDescription}</code></td><td></td></tr>
-           <tr><td><code>{@link #PersianDatePicker_displayMonthNames ir.shes.calendar:displayMonthNames}</code></td><td></td></tr>
-           <tr><td><code>{@link #PersianDatePicker_maxYear ir.shes.calendar:maxYear}</code></td><td></td></tr>
-           <tr><td><code>{@link #PersianDatePicker_minYear ir.shes.calendar:minYear}</code></td><td></td></tr>
-           <tr><td><code>{@link #PersianDatePicker_selectedDay ir.shes.calendar:selectedDay}</code></td><td></td></tr>
-           <tr><td><code>{@link #PersianDatePicker_selectedMonth ir.shes.calendar:selectedMonth}</code></td><td></td></tr>
-           <tr><td><code>{@link #PersianDatePicker_selectedYear ir.shes.calendar:selectedYear}</code></td><td></td></tr>
-           <tr><td><code>{@link #PersianDatePicker_yearRange ir.shes.calendar:yearRange}</code></td><td></td></tr>
+           <tr><td><code>{@link #PersianDatePicker_disableAddKey ir.shes.calendar:disableAddKey}</code></td><td></td></tr>
+           <tr><td><code>{@link #PersianDatePicker_externalPersianCalendar ir.shes.calendar:externalPersianCalendar}</code></td><td></td></tr>
            </table>
-           @see #PersianDatePicker_disableSoftKeyboard
-           @see #PersianDatePicker_displayDescription
-           @see #PersianDatePicker_displayMonthNames
-           @see #PersianDatePicker_maxYear
-           @see #PersianDatePicker_minYear
-           @see #PersianDatePicker_selectedDay
-           @see #PersianDatePicker_selectedMonth
-           @see #PersianDatePicker_selectedYear
-           @see #PersianDatePicker_yearRange
+           @see #PersianDatePicker_disableAddKey
+           @see #PersianDatePicker_externalPersianCalendar
          */
         public static final int[] PersianDatePicker = {
-            0x7f010002, 0x7f010003, 0x7f010004, 0x7f010005,
-            0x7f010006, 0x7f010007, 0x7f010008, 0x7f010009,
-            0x7f01000a
+            0x7f010002, 0x7f010003
         };
         /**
-          <p>This symbol is the offset where the {@link ir.shes.calendar.R.attr#disableSoftKeyboard}
+          <p>This symbol is the offset where the {@link ir.shes.calendar.R.attr#disableAddKey}
           attribute's value can be found in the {@link #PersianDatePicker} array.
 
 
@@ -228,11 +156,11 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name ir.shes.calendar:disableSoftKeyboard
+          @attr name ir.shes.calendar:disableAddKey
         */
-        public static final int PersianDatePicker_disableSoftKeyboard = 8;
+        public static final int PersianDatePicker_disableAddKey = 1;
         /**
-          <p>This symbol is the offset where the {@link ir.shes.calendar.R.attr#displayDescription}
+          <p>This symbol is the offset where the {@link ir.shes.calendar.R.attr#externalPersianCalendar}
           attribute's value can be found in the {@link #PersianDatePicker} array.
 
 
@@ -242,107 +170,9 @@ containing a value of this type.
 theme attribute (in the form
 "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
 containing a value of this type.
-          @attr name ir.shes.calendar:displayDescription
+          @attr name ir.shes.calendar:externalPersianCalendar
         */
-        public static final int PersianDatePicker_displayDescription = 7;
-        /**
-          <p>This symbol is the offset where the {@link ir.shes.calendar.R.attr#displayMonthNames}
-          attribute's value can be found in the {@link #PersianDatePicker} array.
-
-
-          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name ir.shes.calendar:displayMonthNames
-        */
-        public static final int PersianDatePicker_displayMonthNames = 5;
-        /**
-          <p>This symbol is the offset where the {@link ir.shes.calendar.R.attr#maxYear}
-          attribute's value can be found in the {@link #PersianDatePicker} array.
-
-
-          <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name ir.shes.calendar:maxYear
-        */
-        public static final int PersianDatePicker_maxYear = 1;
-        /**
-          <p>This symbol is the offset where the {@link ir.shes.calendar.R.attr#minYear}
-          attribute's value can be found in the {@link #PersianDatePicker} array.
-
-
-          <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name ir.shes.calendar:minYear
-        */
-        public static final int PersianDatePicker_minYear = 0;
-        /**
-          <p>This symbol is the offset where the {@link ir.shes.calendar.R.attr#selectedDay}
-          attribute's value can be found in the {@link #PersianDatePicker} array.
-
-
-          <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name ir.shes.calendar:selectedDay
-        */
-        public static final int PersianDatePicker_selectedDay = 4;
-        /**
-          <p>This symbol is the offset where the {@link ir.shes.calendar.R.attr#selectedMonth}
-          attribute's value can be found in the {@link #PersianDatePicker} array.
-
-
-          <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name ir.shes.calendar:selectedMonth
-        */
-        public static final int PersianDatePicker_selectedMonth = 3;
-        /**
-          <p>This symbol is the offset where the {@link ir.shes.calendar.R.attr#selectedYear}
-          attribute's value can be found in the {@link #PersianDatePicker} array.
-
-
-          <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name ir.shes.calendar:selectedYear
-        */
-        public static final int PersianDatePicker_selectedYear = 2;
-        /**
-          <p>This symbol is the offset where the {@link ir.shes.calendar.R.attr#yearRange}
-          attribute's value can be found in the {@link #PersianDatePicker} array.
-
-
-          <p>Must be an integer value, such as "<code>100</code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name ir.shes.calendar:yearRange
-        */
-        public static final int PersianDatePicker_yearRange = 6;
+        public static final int PersianDatePicker_externalPersianCalendar = 0;
         /** Attributes that can be used with a day.
            <p>Includes the following attributes:</p>
            <table>

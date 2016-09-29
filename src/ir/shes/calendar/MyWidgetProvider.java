@@ -11,17 +11,17 @@ import ir.shes.calendar.util.*;
 import android.content.*;
 
 public class MyWidgetProvider extends AppWidgetProvider {
-	PersianCalendar pCalendar;
-	
+//	PersianCalendar pCalendar;
+	MyApplication app;
 	@Override
 	public void onUpdate(Context context, AppWidgetManager appWidgetManager,
 			int[] appWidgetIds) {
-
+app=(MyApplication) context.getApplicationContext();
 		// initializing widget layout
 		RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
 				R.layout.widget_layout);
-				
-		pCalendar=new PersianCalendar(context);
+		app.pCalendar.goToCurrentDate();
+		//pCalendar=new PersianCalendar(context);
 		// register for button event
 		Intent configIntent = new Intent(context, MainActivity.class);
 
@@ -41,11 +41,11 @@ public class MyWidgetProvider extends AppWidgetProvider {
 
 	private String getDesc() {
 		
-		return pCalendar.getTodayEvent();
+		return app.pCalendar.getTodayEvent();
 	}
 
 	private String getTitle() {
-		return pCalendar.getPersianLongDate();
+		return app.pCalendar.getPersianLongDate();
 	}
 
 	public static void pushWidgetUpdate(Context context, RemoteViews remoteViews) {

@@ -12,17 +12,20 @@ public class MainActivity extends Activity implements PersianDatePicker.OnDateCh
 	PersianDatePicker persianDatePicker;
 	TextView mText1,mText2,mText3;
 	BroadcastReceiver tickReceiver;
+	MyApplication app;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		// TODO: Implement this method
 		super.onCreate(savedInstanceState);
+		app=(MyApplication) getApplicationContext();
 		setContentView(R.layout.main);
 		mText1=(TextView) findViewById(R.id.shamsi);
 		mText2=(TextView) findViewById(R.id.hejri);
 		
 		mText3=(TextView) findViewById(R.id.miladi);
 		persianDatePicker=(PersianDatePicker)findViewById(R.id.PersianDatePicker);
+		persianDatePicker.setPersianCalendar(app.pCalendar);
 		persianDatePicker.setOnDateChangedListener(this);
 	
 		PersianCalendar pCalendar = persianDatePicker.getPersianCalendar();
@@ -44,12 +47,30 @@ private void showCalendar(PersianCalendar pCalendar)
 	
 }
 	@Override
-	public void onDateChanged(PersianCalendar pCalendar, int newYear, int newMonth, int newDay)
+	public void onDateChanged(PersianCalendar pCalendar)
 	{
 		// TODO: Implement this method
+		app.pCalendar=pCalendar;
 		showCalendar(pCalendar);
 		
 	}
+
+	@Override
+	public void onHijriAdjust(PersianCalendar persianCalendar, int hijriAdjust)
+	{
+		// TODO: Implement this method
+		app.pCalendar=persianCalendar;
+		showCalendar(persianCalendar);
+		app.writeConfig(getCacheDir().getParent(),app);
+	}
+
+
+	@Override
+	public void onAddClicked(PersianCalendar persianCalendar)
+	{
+		// TODO: Implement this method
+	}
+
 
 	
 }

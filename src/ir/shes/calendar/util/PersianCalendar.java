@@ -125,7 +125,7 @@ public class PersianCalendar extends GregorianCalendar {
 	private int persianYear;
 	private int persianMonth;
 	private int persianDay;
-	public int hWeekDay;
+	public int hWeekDay,hAdjust=-1;
 	public int hYear,hYear1,hYear2;
 	public int hMonth,hMonth1,hMonth2;
 	public int gMonth1,gMonth2,gYear1,gYear2;
@@ -137,7 +137,10 @@ public class PersianCalendar extends GregorianCalendar {
 	public int[] persianHYears=new int[32];
 	public int[] persianGYears=new int[32];
 	public ResourceUtils eventCalendar;
-	public HashMap<Integer,Integer> hijriMonthDayCorrection;
+	//public HashMap<Integer,Integer> hijriMonthDayCorrection;
+	public int currentYear,currentMonth,currentDay;
+	public int selectedYear,selectedMonth,selectedDay;
+	private Date currentDate;
 	//DateTime dtISO,dtIslamic;
 	// use to seperate PersianDate's field and also Parse the DateString based
 	// on this delimiter
@@ -177,16 +180,48 @@ public class PersianCalendar extends GregorianCalendar {
 		initCalendar(_context);
 		
 	}
-    private void initCalendar(Context _context)
+	public PersianCalendar(Context _context,int hijriAdjust) {
+		hAdjust=hijriAdjust;
+		initCalendar(_context);
+
+	}
+	private void initCalendar(Context _context)
 	{
+
 		eventCalendar=new ResourceUtils(_context);
-		hijriMonthDayCorrection= new HashMap<Integer,Integer>();
-		for (int i=1;i<13;i++) hijriMonthDayCorrection.put(i,0);
-		hijriMonthDayCorrection.put(2,1);
-		hijriMonthDayCorrection.put(7,-1);
+		initCalendar();
+
+	}
+    private void initCalendar()
+	{
+		//hijriMonthDayCorrection= new HashMap<Integer,Integer>();
+	//	for (int i=1;i<13;i++) hijriMonthDayCorrection.put(i,0);
+	//	hijriMonthDayCorrection.put(2,1);
+	//	hijriMonthDayCorrection.put(7,-1);
 		setTimeZone(TimeZone.getTimeZone("Asia/Tehran"));
 		calculateMonthLastDay();
+		currentDay=getPersianDay();
+		currentMonth=getPersianMonth();
+		currentYear=getPersianYear();
+		currentDate=new Date();
+		
 	}
+	public void refresh()
+	{
+		Date date=new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat(
+			"yyyyMMdd", Locale.getDefault());
+
+        if (! dateFormat.format(date).equals(dateFormat.format(currentDate))) {
+			setTime(date);
+			initCalendar();}
+	}
+	public void setSelectedDate(int persianYear, int persianMonth, int persianDay) {
+		this.selectedYear = persianYear;
+		this.selectedMonth = persianMonth;
+		this.selectedDay = persianDay;
+	}
+	
 	public boolean getHVacation(int day)
 	{
 		int dayMonth=getHDayMonth(day);
@@ -495,14 +530,14 @@ public class PersianCalendar extends GregorianCalendar {
 	int year=getPersianYear();
 	
 	setPersianDate(getPersianYear(), getPersianMonth(), 1);
-	kuwaiticalendar(true);
+	kuwaiticalendar(hAdjust);
 	hYear1=hYear;
 	gYear1=get(Calendar.YEAR);
 	hMonth1=hMonth;
 	gMonth1=get(Calendar.MONTH);
 	addPersianDate(MONTH,1 );
     addPersianDate(DATE, -1);
-	kuwaiticalendar(true);
+	kuwaiticalendar(hAdjust);
 	hYear2=hYear;
 	gYear2=get(Calendar.YEAR);
 	hMonth2=hMonth;
@@ -515,7 +550,7 @@ public class PersianCalendar extends GregorianCalendar {
 	for (int i=persianMonthDays;;i--)
 	{
 		setPersianDate(getPersianYear(), getPersianMonth(), i);
-		kuwaiticalendar(true);
+		kuwaiticalendar(hAdjust);
 		persianHYears[i]=hYear;
 		persianHMonths[i]=hMonth;
 		persianHDays[i]=hDay;
@@ -531,7 +566,7 @@ public class PersianCalendar extends GregorianCalendar {
 		
 	}
 	setPersianDate(year,month,day);
-	kuwaiticalendar(true);
+	kuwaiticalendar(hAdjust);
 }
   public void next()
   {
@@ -560,7 +595,7 @@ public class PersianCalendar extends GregorianCalendar {
     		return ((n % m) + m) % m;
     	}
 
-    	public int[] kuwaiticalendar(boolean adjust) {
+    	public int[] kuwaiticalendar(int adjust) {
     		
 			Calendar  today = getInstance();
 		/*	dtISO = new DateTime(today);
@@ -594,14 +629,10 @@ public class PersianCalendar extends GregorianCalendar {
 			double day;
     		double month;
     		double year;
-    		int adj = 0;
-    		if (adjust) {
-    			adj = 0;
-    		} else {
-    			adj = 1;
-    		}
-
-    		if (adjust) {
+    		int adj = adjust;
+			
+    		
+    		if (adjust!=0) {
     			int adjustmili = 1000 * 60 * 60 * 24 * adj;
     			long todaymili = getTimeInMillis() + adjustmili;
     			today.setTimeInMillis(todaymili);
@@ -703,16 +734,17 @@ public class PersianCalendar extends GregorianCalendar {
     		return myRes;
 			
     	}
+		/*
 private int dayCorrection(int month,int day)
 {
 if (month>1)
 	for (int i=1;i<month;i++) day+=hijriMonthDayCorrection.get(i);
 	return day;
-}
+}*/
     	public  String writeIslamicDate() {
     				// This Value is used to give the correct day +- 1 day
-    		boolean dayTest = true;
-    		kuwaiticalendar(dayTest);
+    		
+    		kuwaiticalendar(hAdjust);
     		String outputIslamicDate = getHWeekDayName() + ", " + PersianCalendarConstants.toArabicNumbers(hDay)
 				+ " " + getHMonthName() + " " + PersianCalendarConstants.toArabicNumbers(hYear) + " ";
 
@@ -778,6 +810,24 @@ if (month>1)
 	@Override
 	public void setTimeZone(TimeZone zone) {
 		super.setTimeZone(zone);
+		calculatePersianDate();
+	}
+	public boolean isCurrent(int persianDay)
+	{
+		return ( currentYear == getPersianYear() &&
+			getPersianMonth()== currentMonth &&
+			persianDay== currentDay);
+	}
+	public boolean isSelected(int persianDay)
+	{
+		return 
+			(selectedYear == getPersianYear() &&
+			getPersianMonth()== selectedMonth &&
+			persianDay == selectedDay);
+	}
+	public void goToCurrentDate()
+	{
+		setTime(currentDate);
 		calculatePersianDate();
 	}
 }

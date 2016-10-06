@@ -37,7 +37,7 @@ public class MainActivity extends Activity implements PersianDatePicker.OnDateCh
 private void showCalendar(PersianCalendar pCalendar)
 {
 	int day=pCalendar.getPersianDay();
-	mText1.setText(pCalendar.getPersianLongDate()+" "+pCalendar.getPEvent(day));
+	mText1.setText(pCalendar.getPersianLongDateAndTime()+" "+pCalendar.getPEvent(day));
 	mText2.setText(pCalendar.writeIslamicDate()+" "+pCalendar.getHEvent(day)); 
  
 	

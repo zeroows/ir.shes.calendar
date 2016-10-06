@@ -141,6 +141,7 @@ public class PersianCalendar extends GregorianCalendar {
 	public int currentYear,currentMonth,currentDay;
 	public int selectedYear,selectedMonth,selectedDay;
 	private Date currentDate;
+	private long timeCorrection=0;
 	//DateTime dtISO,dtIslamic;
 	// use to seperate PersianDate's field and also Parse the DateString based
 	// on this delimiter
@@ -148,7 +149,7 @@ public class PersianCalendar extends GregorianCalendar {
 
 	private long convertToMilis(long julianDate) {
 		return PersianCalendarConstants.MILLIS_JULIAN_EPOCH + julianDate * PersianCalendarConstants.MILLIS_OF_A_DAY
-				+ PersianCalendarUtils.ceil(getTimeInMillis() - PersianCalendarConstants.MILLIS_JULIAN_EPOCH, PersianCalendarConstants.MILLIS_OF_A_DAY);
+			+ PersianCalendarUtils.ceil(getMillis() - PersianCalendarConstants.MILLIS_JULIAN_EPOCH, PersianCalendarConstants.MILLIS_OF_A_DAY);
 	}
 
 	/**
@@ -170,8 +171,8 @@ public class PersianCalendar extends GregorianCalendar {
 	 * default constructor
 	 * 
 	 * most of the time we don't care about TimeZone when we persisting Date or
-	 * doing some calculation on date. Default TimeZone was set to
-	 * "Asia/Tehran" which is the capital of United State of Persia in order to make developer to work more convenient with
+	 * doing some calculation on date. 
+	 * in order to make developer to work more convenient with
 	 * the library; however you can change the TimeZone as you do in
 	 * GregorianCalendar by calling setTimeZone()
 	 */
@@ -194,11 +195,16 @@ public class PersianCalendar extends GregorianCalendar {
 	}
     private void initCalendar()
 	{
-		//hijriMonthDayCorrection= new HashMap<Integer,Integer>();
-	//	for (int i=1;i<13;i++) hijriMonthDayCorrection.put(i,0);
-	//	hijriMonthDayCorrection.put(2,1);
-	//	hijriMonthDayCorrection.put(7,-1);
-		setTimeZone(TimeZone.getTimeZone("Asia/Tehran"));
+	
+		// IRST (Iran Standard Time) UTC/GMT +3:30 hours
+		// by @irshst
+		set(HOUR_OF_DAY, 3);
+		set(MINUTE, 30);
+		set(SECOND, 0);
+		set(MILLISECOND, 0);
+		
+		setTimeZone(TimeZone.getTimeZone("GMT+3:30"));
+
 		calculateMonthLastDay();
 		currentDay=getPersianDay();
 		currentMonth=getPersianMonth();
@@ -311,12 +317,18 @@ public class PersianCalendar extends GregorianCalendar {
 		return (persianGMonths[i]+1)*100+persianGDays[i];
 
 	}
+	private long getMillis()
+	{
+		return getTimeInMillis()+timeCorrection;
+	}
 	/**
 	 * Calculate persian date from current Date and populates the corresponding
 	 * fields(persianYear, persianMonth, persianDay)
 	 */
 	protected void calculatePersianDate() {
-		long julianDate = ((long) Math.floor((getTimeInMillis() - PersianCalendarConstants.MILLIS_JULIAN_EPOCH)) / PersianCalendarConstants.MILLIS_OF_A_DAY);
+		
+		
+		long julianDate = ((long) Math.floor((getMillis() - PersianCalendarConstants.MILLIS_JULIAN_EPOCH)) / PersianCalendarConstants.MILLIS_OF_A_DAY);
 		long PersianRowDate = PersianCalendarUtils.julianToPersian(julianDate);
 		long year = PersianRowDate >> 16;
 		int month = (int) (PersianRowDate & 0xff00) >> 8;
@@ -449,7 +461,9 @@ public class PersianCalendar extends GregorianCalendar {
 	}
 
 	public String getPersianLongDateAndTime() {
-		return getPersianLongDate() + " " + PersianCalendarConstants.toArabicNumbers(get(HOUR_OF_DAY)) + ":" + PersianCalendarConstants.toArabicNumbers(get(MINUTE)) + ":" + PersianCalendarConstants.toArabicNumbers(get(SECOND));
+		Calendar c = new GregorianCalendar();
+		
+		return getPersianLongDate() + " " + PersianCalendarConstants.toArabicNumbers(c.get(HOUR_OF_DAY)) + ":" + PersianCalendarConstants.toArabicNumbers(c.get(MINUTE)) + ":" + PersianCalendarConstants.toArabicNumbers(c.get(SECOND));
 	}
 
 	/**
@@ -525,6 +539,7 @@ public class PersianCalendar extends GregorianCalendar {
 	 */
 	public void calculateMonthLastDay()
 {
+	
 	int day=getPersianDay();
 	int month=getPersianMonth();
 	int year=getPersianYear();
